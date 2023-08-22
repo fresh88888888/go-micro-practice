@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// 包名
+package protos;
+
+option go_package = "./protos";
+
+import "prod_model.proto";
+
+// 请求
+message ProdRequest{
+    // @inject_tag: json:"size",form:"size"
+    int32 size = 1;
+    // @inject_tag: uri:"pid"
+    int32 pro_id=2;
+}
+
+// 响应
+message ProdListResponse{
+    repeated ProdModel data = 1;
+}
+
+// 响应
+message ProdDetailResponse{
+    ProdModel data =1;
+}
+
+service ProdService {
+    rpc GetProdsList(ProdRequest) returns (ProdListResponse);
+    rpc GetProdDetail(ProdRequest) returns (ProdDetailResponse);
+}

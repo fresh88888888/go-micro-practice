@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// 包名
+package protos;
+
+option go_package = "./protos";
+
+message TestResp{
+    int32 status=1;
+    string data=2;
+}

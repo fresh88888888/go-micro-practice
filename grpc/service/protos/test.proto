@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+// 包名
+package protos;
+
+option go_package = "./protos";
+
+import "google/api/annotations.proto";
+
+// 请求
+message TestRequest{
+    // @inject_tag: json:"id",form:"id"
+    int32 id = 1;
+}
+
+// 响应
+message TestResponse{
+    string data = 1;
+}
+
+service TestService {
+    rpc Call(TestRequest) returns (TestResponse) {
+        option (google.api.http) = {
+            get: "/test/{id}"
+        };
+    }
+}
