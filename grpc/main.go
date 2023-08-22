@@ -26,7 +26,7 @@ func main() {
 		server.Address(":8082"),
 	)
 
-	myservice := micro.NewService(
+	mysservice := micro.NewService(
 		micro.Server(srv),
 		micro.Name("api.umbrella.myapp"),
 		micro.Registry(register),
@@ -38,9 +38,10 @@ func main() {
 	if err := srv.Handle(hd); err != nil {
 		log.Fatal(err)
 	}
-	myservice.Init()
+	mysservice.Init()
 
-	if err := myservice.Run(); err != nil {
+	if err := mysservice.Run(); err != nil {
 		log.Fatal(err)
 	}
+
 }
